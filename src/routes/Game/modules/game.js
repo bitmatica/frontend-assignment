@@ -33,7 +33,6 @@ export const actions = {
 const ACTION_HANDLERS = {
   [MARKER_CHANGE_POSITION]: (state, action) => {
     const {id, position} = action.payload
-    console.log(state.toJS())
     return state.setIn(["markers", id, "position"], position)
   }
 }
