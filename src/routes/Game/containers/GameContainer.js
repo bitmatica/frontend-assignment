@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-// TODO: Import game actions once they are defined.
-import { increment, doubleAsync } from '../modules/game'
+import { changePosition } from '../modules/game'
 
 /*  This is a container component. Notice it does not contain any JSX,
     nor does it import React. This component is **only** responsible for
@@ -15,8 +14,7 @@ import Game from '../components/Game'
 
 // TODO: Add game actions once they are defined.
 const mapActionCreators = {
-  increment: () => increment(1),
-  doubleAsync
+  changePosition
 }
 
 const mapStateToProps = (state) => ({
