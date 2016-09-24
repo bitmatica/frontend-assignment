@@ -1,2 +1,7 @@
 .buttonContainer {
+  padding-top: 30px;
+  
+  button + button {
+    margin-left: 10px;
+  }
 }

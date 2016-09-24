@@ -30,11 +30,10 @@ class Game extends React.Component {
           <Sidebar markers={sidebarMarkers} />
 
           <div className={classes.mainPane}>
+            <Buttons markers={gridMarkers} changePosition={changePosition} />
             <Grid markers={gridMarkers} changePosition={changePosition} />
           </div>
         </div>
-
-        <Buttons markers={gridMarkers} changePosition={changePosition} />
 
       </div>
     )

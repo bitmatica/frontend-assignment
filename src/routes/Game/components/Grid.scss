@@ -1,3 +1,28 @@
 .grid {
   display: relative;
+  padding: 20px 0;
+}
+
+:global(.grid:first-child .domain) {
+  fill: #FFF;
+}
+
+:global(.domain) {
+  stroke: #B4C2CE;
+}
+
+:global(.tick) {
+  stroke: #B4C2CE;
+  
+  line {
+    stroke: #B4C2CE;
+  }
+  
+  text {
+    fill: #4E7397;
+  }
+}
+
+text {
+  font-size: 17px;
 }

@@ -6,6 +6,23 @@ class Marker extends React.Component {
     offset: React.PropTypes.object
   }
 
+  constructor () {
+    super()
+    this.getColor = this.getColor.bind(this)
+  }
+
+  getColor () {
+    const m = this.props.marker
+
+    if (!m.position) {
+      return '#FBD836'
+    } else if (m.destination.x === m.position.x && m.destination.y === m.position.y) {
+      return '#BCD86A'
+    } else {
+      return '#F35E68'
+    }
+  }
+
   render () {
     const {marker, offset} = this.props
     const {destination} = marker
@@ -17,10 +34,12 @@ class Marker extends React.Component {
     const offsetX = offset ? offset.x : d
     const offsetY = offset ? offset.y : d
 
+    const color = this.getColor()
+
     return (
-      <g transform={`translate(${offsetX},${offsetY})`}>
-        <circle fill="white" stroke="black" r={r}></circle>
-        <text alignmentBaseline="middle" textAnchor="middle">{x}, {y}</text>
+      <g className="marker" transform={`translate(${offsetX},${offsetY})`}>
+        <circle className="circle" fill={color} stroke="#444" r={r}></circle>
+        <text className="coordinates" fill="#444" alignmentBaseline="middle" textAnchor="middle">{x}, {y}</text>
       </g>
     )
   }
