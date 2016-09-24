@@ -7,14 +7,14 @@ import Marker from './Marker'
 
 import classes from './Grid.scss'
 
-const margin = {top: 20, right: 100, bottom: 30, left: 100};
-const width = ROWS * CELL_SIZE;
-const height = COLS * CELL_SIZE;
+const margin = {top: 20, right: 100, bottom: 30, left: 100}
+const width = ROWS * CELL_SIZE
+const height = COLS * CELL_SIZE
 
 class Grid extends React.Component {
   static propTypes = {
     markers: React.PropTypes.array.isRequired,
-    changePosition: React.PropTypes.func.isRequired,
+    changePosition: React.PropTypes.func.isRequired
   }
 
   constructor () {
@@ -27,14 +27,14 @@ class Grid extends React.Component {
   componentWillMount () {
     this.xScale = d3.scaleLinear()
       .domain([0, ROWS])
-      .range([0, width]);
+      .range([0, width])
 
     this.yScale = d3.scaleLinear()
       .domain([0, ROWS])
-      .range([height, 0]);
+      .range([height, 0])
 
     this.xAxis = d3.axisBottom(this.xScale)
-    this.yAxis = d3.axisLeft(this.yScale)    
+    this.yAxis = d3.axisLeft(this.yScale)
   }
 
   componentDidMount () {
@@ -42,44 +42,42 @@ class Grid extends React.Component {
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
 
-    const svg = d3.select(this.refs.container)
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-    
-      // Gridlines
-      d3.select(this.refs.xAxis)
-        .attr('class', 'grid')
-        .attr('transform', 'translate(0,' + height + ')')
-        .call(this.xAxis
-          .ticks(COLS)
-          .tickSize(-height))
+    d3.select(this.refs.container)
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
-      d3.select(this.refs.yAxis)
-        .attr('class', 'grid')
-        .call(this.yAxis
-          .ticks(ROWS)
-          .tickSize(-width))
+    // Gridlines
+    d3.select(this.refs.xAxis)
+      .attr('class', 'grid')
+      .attr('transform', 'translate(0,' + height + ')')
+      .call(this.xAxis
+        .ticks(COLS)
+        .tickSize(-height))
+
+    d3.select(this.refs.yAxis)
+      .attr('class', 'grid')
+      .call(this.yAxis
+        .ticks(ROWS)
+        .tickSize(-width))
   }
 
   onDrop (ev) {
-    ev.preventDefault();
+    ev.preventDefault()
     const markerID = ev.dataTransfer.getData('text')
 
     const mPos = d3.mouse(this.refs.container, d3.event = ev)
     const mdx = this.xScale.invert(mPos[0])
     const mdy = this.yScale.invert(mPos[1])
-    const md = {x: mdx, y: mdy}
-    
+
     const position = {x: Math.round(mdx), y: Math.round(mdy)}
-    
+
     this.props.changePosition(markerID, position)
   }
-  
+
   onDragOver (ev) {
-    ev.preventDefault();
+    ev.preventDefault()
   }
-  
+
   renderMarker (marker) {
-    const pos = marker.position
     const x = this.xScale(marker.position.x)
     const y = this.yScale(marker.position.y)
     const offset = {x, y}

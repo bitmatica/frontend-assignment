@@ -33,7 +33,7 @@ export const actions = {
 const ACTION_HANDLERS = {
   [MARKER_CHANGE_POSITION]: (state, action) => {
     const {id, position} = action.payload
-    return state.setIn(["markers", id, "position"], position)
+    return state.setIn(['markers', id, 'position'], position)
   }
 }
 
@@ -45,9 +45,9 @@ function makeMarker (i) {
     id: i,
     destination: {
       x: Math.floor(Math.random() * COLS) + 1,
-      y: Math.floor(Math.random() * ROWS) + 1,
+      y: Math.floor(Math.random() * ROWS) + 1
     },
-    position: null,
+    position: null
   }
 }
 

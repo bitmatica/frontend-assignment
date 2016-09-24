@@ -3,14 +3,14 @@ import React from 'react'
 class Marker extends React.Component {
   static propTypes = {
     marker: React.PropTypes.object.isRequired,
-    offset: React.PropTypes.object,
+    offset: React.PropTypes.object
   }
 
   render () {
     const {marker, offset} = this.props
-    const {destination, position} = marker
+    const {destination} = marker
     const {x, y} = destination
-    
+
      // Ends up with an odd diameter so the marker is centered on a point
     const r = 30.5
     const d = r * 2

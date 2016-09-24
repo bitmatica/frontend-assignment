@@ -1,9 +1,5 @@
 import React from 'react'
 import Immutable from 'immutable'
-import * as d3 from 'd3'
-import {times} from 'lodash'
-
-import {ROWS, COLS, CELL_SIZE} from '../modules/game'
 
 import Grid from './Grid'
 import Sidebar from './Sidebar'
@@ -14,12 +10,12 @@ import classes from './Game.scss'
 class Game extends React.Component {
   static propTypes = {
     game: React.PropTypes.instanceOf(Immutable.Map).isRequired,
-    changePosition: React.PropTypes.func.isRequired,
+    changePosition: React.PropTypes.func.isRequired
   }
-  
+
   render () {
     const {game, changePosition} = this.props
-    const markers = game.get("markers").toJS()
+    const markers = game.get('markers').toJS()
 
     const sidebarMarkers = markers.filter(m => !m.position)
     const gridMarkers = markers.filter(m => m.position)
@@ -32,14 +28,14 @@ class Game extends React.Component {
 
         <div className={classes.gameContainer}>
           <Sidebar markers={sidebarMarkers} />
-          
+
           <div className={classes.mainPane}>
             <Grid markers={gridMarkers} changePosition={changePosition} />
           </div>
         </div>
-        
+
         <Buttons markers={gridMarkers} changePosition={changePosition} />
-        
+
       </div>
     )
   }

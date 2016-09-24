@@ -6,7 +6,7 @@ import classes from './Sidebar.scss'
 
 class Sidebar extends React.Component {
   static propTypes = {
-    markers: React.PropTypes.array.isRequired,
+    markers: React.PropTypes.array.isRequired
   }
 
   render () {
